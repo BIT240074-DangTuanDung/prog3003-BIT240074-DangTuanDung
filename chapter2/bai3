@@ -1,0 +1,48 @@
+package com.mycom;
+
+/**
+ *
+ * @author dangt
+ */
+interface Notification {
+    void notifyUser();
+}
+
+class SMSNotification implements Notification {
+    @Override
+    public void notifyUser() {
+        System.out.println("Gửi thông báo qua SMS");
+    }
+}
+
+class EmailNotification implements Notification {
+    @Override
+    public void notifyUser() {
+        System.out.println("Gửi thông báo qua Email");
+    }
+}
+
+class NotificationFactory {
+    public static Notification createNotification(String channel) {
+        switch (channel.toLowerCase()) {
+            case "sms" -> {
+                return new SMSNotification();
+            }
+            case "email" -> {
+                return new EmailNotification();
+            }
+            default -> throw new IllegalArgumentException("Kênh không hỗ trợ");
+        }
+    }
+}
+
+public class NotificationDemo {
+
+    public static void main(String[] args) {
+        Notification n1 = NotificationFactory.createNotification("sms");
+        n1.notifyUser();
+
+        Notification n2 = NotificationFactory.createNotification("email");
+        n2.notifyUser();
+    }
+}
