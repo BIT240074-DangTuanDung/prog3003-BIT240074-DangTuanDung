@@ -4,46 +4,42 @@ package com.mycom;
  *
  * @author dangt
  */
-interface PaymentStrategy {
-    void pay(int amount);
-}
-
-class CreditCardPayment implements PaymentStrategy {
-    @Override
-    public void pay(int amount) {
-        System.out.println("Thanh toán " + amount + " bằng Credit Card");
+class TV {
+    public void on() {
+        System.out.println("Bật TV");
     }
 }
 
-class PayPalPayment implements PaymentStrategy {
-    @Override
-    public void pay(int amount) {
-        System.out.println("Thanh toán " + amount + " bằng PayPal");
+class SoundSystem {
+    public void on() {
+        System.out.println("Bật hệ thống âm thanh");
     }
 }
 
-class ShoppingCart {
-    private PaymentStrategy paymentStrategy;
-
-    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
-        this.paymentStrategy = paymentStrategy;
-    }
-
-    public void checkout(int amount) {
-        paymentStrategy.pay(amount);
+class DVDPlayer {
+    public void on() {
+        System.out.println("Bật đầu DVD");
     }
 }
 
-public class PaymentDemo {
+class HomeTheaterFacade {
+    private final TV tv = new TV();
+    private final SoundSystem sound = new SoundSystem();
+    private final DVDPlayer dvd = new DVDPlayer();
+
+    public void watchMovie() {
+        System.out.println("Chuẩn bị xem phim...");
+        tv.on();
+        sound.on();
+        dvd.on();
+        System.out.println("Bắt đầu xem phim 🎬");
+    }
+}
+
+public class HomeTheaterDemo {
 
     public static void main(String[] args) {
-        ShoppingCart cart = new ShoppingCart();
-
-        cart.setPaymentStrategy(new CreditCardPayment());
-        cart.checkout(500);
-
-        cart.setPaymentStrategy(new PayPalPayment());
-        cart.checkout(300);
+        HomeTheaterFacade homeTheater = new HomeTheaterFacade();
+        homeTheater.watchMovie();
     }
 }
-
