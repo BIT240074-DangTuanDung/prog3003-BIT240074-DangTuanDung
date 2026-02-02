@@ -1,0 +1,28 @@
+package com.mycompany.baitapchuong3;
+
+class PrintTask extends Thread {
+    public PrintTask(String name) {
+        super(name);
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(getName() + " : " + i);
+            try {
+                Thread.sleep(100); // ngủ 100ms cho dễ nhìn
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+}
+
+public class Bai2 {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            Thread t = new PrintTask("Thread-" + i);
+            t.start();
+        }
+    }
+}
+
