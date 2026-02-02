@@ -1,0 +1,38 @@
+package com.mycompany.baitapchuong3;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+
+public class Bai3 {
+    public static void main(String[] args) {
+
+        CompletableFuture<int[]> futureArray = CompletableFuture.supplyAsync(() -> {
+            // B1: cung cấp array bất đồng bộ
+            int[] arr = {1, 2, 5, 3, 100};
+            return arr;
+        });
+
+        CompletableFuture<List<Integer>> futureFiltered = futureArray.thenApply(arr -> {
+            // B2: lọc số lẻ và sắp xếp tăng
+            return Arrays.stream(arr)
+                    .filter(x -> x % 2 != 0)
+                    .sorted()
+                    .boxed()
+                    .collect(Collectors.toList());
+        });
+
+        CompletableFuture<String> futureResult = futureFiltered.thenApply(list -> {
+            // B3: chuyển thành chuỗi
+            return "Kết quả là: " + list;
+        });
+
+        // B4: in ra màn hình
+        futureResult.thenAccept(System.out::println);
+
+        // Chặn main để chờ CompletableFuture chạy xong
+        futureResult.join();
+    }
+}
+
