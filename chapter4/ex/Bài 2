@@ -1,0 +1,17 @@
+package com.mycompany.baitapchuong4;
+import java.util.*;
+
+public class Bai2 {
+
+    public static void main(String[] args) {
+        List<String> cities = Arrays.asList("Hanoi", "Ho Chi Minh", "Da Nang", "Hue");
+
+        // Sắp xếp theo độ dài chuỗi tăng dần
+        Collections.sort(cities, (s1, s2) -> s1.length() - s2.length());
+
+        System.out.println("Danh sách sau khi sắp xếp theo độ dài:");
+        for (String city : cities) {
+            System.out.println(city + " (" + city.length() + ")");
+        }
+    }
+}
