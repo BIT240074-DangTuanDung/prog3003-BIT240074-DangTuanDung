@@ -1,0 +1,23 @@
+package com.mycompany.baitapchuong4;
+
+public class Bai1 {
+
+    @FunctionalInterface
+    interface MathOperation {
+        int compute(int a, int b);
+    }
+
+    public static void main(String[] args) {
+        MathOperation add = (a, b) -> a + b;
+        MathOperation sub = (a, b) -> a - b;
+        MathOperation mul = (a, b) -> a * b;
+        MathOperation div = (a, b) -> a / b; // giả sử b != 0
+
+        int x = 10, y = 5;
+
+        System.out.println("Cộng: " + add.compute(x, y));
+        System.out.println("Trừ: " + sub.compute(x, y));
+        System.out.println("Nhân: " + mul.compute(x, y));
+        System.out.println("Chia: " + div.compute(x, y));
+    }
+}
