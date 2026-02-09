@@ -1,0 +1,22 @@
+package com.mycompany.baitapchuong4;
+
+import java.util.*;
+import java.util.function.Function;
+
+public class Bai4 {
+
+    public static void main(String[] args) {
+        List<String> moneyStrings = Arrays.asList("$10", "$20", "$50");
+
+        // Function cắt dấu $ và chuyển sang int
+        Function<String, Integer> convertToInt = s -> Integer.valueOf(s.replace("$", ""));
+
+        List<Integer> numbers = new ArrayList<>();
+        for (String s : moneyStrings) {
+            numbers.add(convertToInt.apply(s));
+        }
+
+        System.out.println("Danh sách chuỗi: " + moneyStrings);
+        System.out.println("Danh sách số nguyên: " + numbers);
+    }
+}
