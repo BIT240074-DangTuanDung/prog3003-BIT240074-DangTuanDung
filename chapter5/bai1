@@ -1,0 +1,29 @@
+import java.sql.*;
+
+public class Bai1 {
+
+    static final String URL = "jdbc:mysql://localhost:3306/testdb";
+    static final String USER = "root";
+    static final String PASSWORD = "123456"; // sửa theo mật khẩu của bạn
+
+    public static void main(String[] args) {
+
+        try {
+            try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                String sql = "SELECT * FROM users";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String username = rs.getString("username");
+                    String email = rs.getString("email");
+                    
+                    System.out.println(id + " - " + username + " - " + email);
+                }
+            }
+
+        } catch (SQLException e) {
+        }
+    }
+}
