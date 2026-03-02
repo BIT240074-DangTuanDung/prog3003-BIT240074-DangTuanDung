@@ -1,0 +1,6 @@
+com\myapp\baitest2\PayPalPayment.class
+com\myapp\baitest2\CreditCardPayment.class
+com\myapp\baitest2\Payment.class
+com\myapp\baitest2\PaymentFactory.class
+com\myapp\baitest2\CashPayment.class
+com\myapp\baitest2\baitest2.class
